@@ -25,6 +25,6 @@ dockerとdocker-composeインストール済みが前提
    docker-compose up -d --build
    ```
 
-1. http://localhost:8000/ にアクセス
+1. http://localhost/ にアクセス
 
 1. ロケットが飛んでたら成功！おめでとう！
