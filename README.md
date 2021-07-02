@@ -34,7 +34,7 @@ dockerとdocker-composeインストール済みが前提
 
 1. ロケットが飛んでたら成功！おめでとう！
 
-1. `stop` でdocker停止
+1. Ctrl + C でdocker停止
 
 # 初回以降の起動
 ```
