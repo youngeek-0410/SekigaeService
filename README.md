@@ -5,7 +5,11 @@
 dockerとdocker-composeインストール済みが前提
 Ubuntuのaptでインストールされるやつはかなり古いのでエラーが起きたらdocker| docker-composeのバージョンも疑ってください
 
-1. `git clone`する
+1. `git clone https://github.com/youngeek-0410/SekigaeService.git`
+
+1. `cd SekigaeService`
+
+1. `source env.sh`
 
 1. 環境変数ファイルを追加（slackでもらう）
 
@@ -23,9 +27,17 @@ Ubuntuのaptでインストールされるやつはかなり古いのでエラ�
 1. docker起動
 
    ```
-   docker-compose up -d --build
+   build
+   up
    ```
 
 1. http://localhost/ にアクセス
 
 1. ロケットが飛んでたら成功！おめでとう！
+
+1. Ctrl + C でdocker停止
+
+# 初回以降の起動
+```
+up
+```
