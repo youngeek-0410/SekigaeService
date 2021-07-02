@@ -4,7 +4,11 @@
 ## 実行までの手順
 dockerとdocker-composeインストール済みが前提
 
-1. `git clone`する
+1. `git clone https://github.com/youngeek-0410/SekigaeService.git`
+
+1. `cd SekigaeService`
+
+1. `source env.sh`
 
 1. 環境変数ファイルを追加（slackでもらう）
 
@@ -22,9 +26,17 @@ dockerとdocker-composeインストール済みが前提
 1. docker起動
 
    ```
-   docker-compose up -d --build
+   build
+   up
    ```
 
 1. http://localhost/ にアクセス
 
 1. ロケットが飛んでたら成功！おめでとう！
+
+1. `stop` でdocker停止
+
+# 初回以降の起動
+```
+up
+```
