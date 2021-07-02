@@ -3,6 +3,7 @@
 
 ## 実行までの手順
 dockerとdocker-composeインストール済みが前提
+Ubuntuのaptでインストールされるやつはかなり古いのでエラーが起きたらdocker| docker-composeのバージョンも疑ってください
 
 1. `git clone`する
 
