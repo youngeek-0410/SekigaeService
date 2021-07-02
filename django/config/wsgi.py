@@ -13,9 +13,6 @@ from django.core.wsgi import get_wsgi_application
 
 # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 
-from dotenv import load_dotenv
-load_dotenv(os.path.join(BASE_DIR, ".env"))
-
 envstate = os.getenv('ENV_STATE')
 if envstate == 'production':
     # settings/production.py

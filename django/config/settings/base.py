@@ -16,9 +16,6 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(
     os.path.dirname(os.path.abspath(__file__))))
 
-from dotenv import load_dotenv
-load_dotenv(os.path.join(BASE_DIR, ".env"))
-
 DEBUG = False
 
 # Quick-start development settings - unsuitable for production
