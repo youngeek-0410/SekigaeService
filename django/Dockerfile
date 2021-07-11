@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 
 # Pythonがpyc filesとdiscへ書き込むことを防ぐ
 ENV PYTHONDONTWRITEBYTECODE 1
-# # Pythonが標準入出力をバッファリングすることを防ぐ
+# Pythonが標準入出力をバッファリングすることを防ぐ
 ENV PYTHONUNBUFFERED 1
 
 # install psycopg2 dependencies
