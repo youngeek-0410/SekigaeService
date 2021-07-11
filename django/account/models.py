@@ -12,6 +12,8 @@ class UserManager(BaseUserManager):
     def create_user(self, email, username, uuid):
         if not uuid:
             raise ValueError('Uuid is required in order to create user.')
+        if not email:
+            raise ValueError('Email is required in order to create user.')
         user = self.model(email=email, username=username, uuid=uuid)
         user.save(using=self._db)
         return user
