@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ "$DB" = "postgres" ]
 then
@@ -17,6 +17,6 @@ python manage.py migrate
 python manage.py collectstatic --no-input
 
 # hot reload
-uwsgi --ini /usr/src/app/uwsgi.ini
+uwsgi --ini /code/uwsgi.ini
 
 exec "$@"
