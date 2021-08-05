@@ -35,7 +35,7 @@ services:
       - django
     volumes:
       - static_volume:/code/static
-      - ./nginx/uwsgi_prams:/etc/nginx/uwsgi_prams
+      - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
 volumes:
   postgres_data:
   static_volume:
