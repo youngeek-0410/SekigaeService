@@ -6,7 +6,7 @@ services:
     volumes:
       # マウントするディレクトリ
       - ./django:/code
-      - static_volume:/code/static
+      - ./django/static:/code/static
     expose:
       - 8000
     env_file:
@@ -34,8 +34,7 @@ services:
     depends_on:
       - django
     volumes:
-      - static_volume:/code/static
-      - ./nginx/uwsgi_prams:/etc/nginx/uwsgi_prams
+      - ./django/static:/code/static
+      - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
 volumes:
   postgres_data:
-  static_volume:
