@@ -7,7 +7,7 @@ module.exports = {
     entry: path.resolve(__dirname, "src/app.tsx"),
     output: {
         path: path.resolve(__dirname, "static/dist/"),
-        filename: "app.js",
+        filename: "application.js",
     },
     resolve: {
         modules: ['node_modules'],
