@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <header>
+            <h1>Sekigae Service's Header</h1>
+        </header>
+        <main>
+            <div id="app"></div>
+            <div class="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </main>
+    </body>
+    <script src="{% static "dist/application.js" %}"></script>
+
+</html>
