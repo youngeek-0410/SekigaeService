@@ -9,12 +9,12 @@ from django.utils import timezone
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
-    def create_user(self, email, username, uuid):
-        if not uuid:
-            raise ValueError('Uuid is required in order to create user.')
+    def create_user(self, email, username, uid):
+        if not uid:
+            raise ValueError('User id is required in order to create user.')
         if not email:
             raise ValueError('Email is required in order to create user.')
-        user = self.model(email=email, username=username, uuid=uuid)
+        user = self.model(email=email, username=username, uid=uid)
         user.save(using=self._db)
         return user
 
@@ -28,13 +28,17 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     uuid = models.UUIDField(default=uuid_lib.uuid4,
-                            editable=False, unique=True)
+                            editable=False, unique=True, primary_key=True)
+
+    # user info
     email = models.EmailField(_('email address'), unique=True)
     username = models.CharField(
         _('username'),
         max_length=250,
         blank=True,
     )
+    uid = models.CharField(max_length=36, blank=True)
+
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
