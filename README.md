@@ -3,7 +3,6 @@
 
 ## 実行までの手順
 dockerとdocker-composeインストール済みが前提
-Ubuntuのaptでインストールされるやつはかなり古いのでエラーが起きたらdocker| docker-composeのバージョンも疑ってください
 
 1. `git clone https://github.com/youngeek-0410/SekigaeService.git`
 
@@ -21,8 +20,6 @@ Ubuntuのaptでインストールされるやつはかなり古いのでエラ�
    ```
    chmod +x django/entrypoint.sh
    ```
-   このとき、それぞれのgitの設定によっては権限変更がgitに追跡されるので、gitの設定を変更する(エラー出た人だけでいいよ)  
-   `git config core.filemode false`
 
 1. docker起動
 
