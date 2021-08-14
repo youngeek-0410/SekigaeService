@@ -1,9 +1,14 @@
-import React from 'react'
+/** @jsx jsx */
+import * as React from 'react'
+import { jsx } from '@emotion/react'
+import { css } from '@emotion/react'
 
 const HelloWorld: React.FC = () => {
     return(
-        <div>
-            <p>Hello, World!!</p>
+        <div css={css({
+            backgroundColor:'aqua'
+        })}>
+            <p>Hello, World!!!!</p>
         </div>
     )
 }
