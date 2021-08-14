@@ -10,7 +10,10 @@ module.exports = {
         filename: "application.js",
     },
     resolve: {
-        modules: ['node_modules'],
+        modules: [
+            path.resolve('./src'),
+            path.resolve('./node_modules')
+        ],
         extensions:[".js", ".ts", ".tsx"],
     },
     module: {
