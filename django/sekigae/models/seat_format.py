@@ -7,7 +7,7 @@ class SeatFormat(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(default=timezone.now)
     name = models.CharField(max_length=250)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -15,7 +15,7 @@ class SeatFormat(models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["name", "user_id"],
+                fields=["name", "owner"],
                 name="unique_sheet_format"
             )
         ]
