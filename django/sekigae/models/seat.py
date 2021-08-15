@@ -4,15 +4,15 @@ from .seat_format import SeatFormat
 class Seat(models.Model):
     row = models.IntegerField()
     column = models.IntegerField()
-    seat_format_id = models.ForeignKey(SeatFormat, on_delete=models.CASCADE)
+    seat_format = models.ForeignKey(SeatFormat, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "{}[{}][{}]".format(self.seat_format_id.name, self.row, self.column)
+        return "{}[{}][{}]".format(self.seat_format.name, self.row, self.column)
 
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["row", "column"],
+                fields=["row", "column", "seat_format"],
                 name="unique_row_column"
             )
         ]
