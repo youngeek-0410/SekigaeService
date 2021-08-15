@@ -8,7 +8,7 @@ const StartButton: React.FC = (prop) => {
     <div
       css={css({
         color:"white",
-        fontSize:"16px",
+        fontSize:"18px",
 
         width: "250px",
         height: "72px",
