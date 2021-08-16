@@ -19,5 +19,5 @@ class SeatFormat(models.Model):
                 name="unique_sheet_format"
             )
         ]
-        verbose_name = "seat_format"
-        verbose_name_plural = "seat_formats"
+        verbose_name = "seat format"
+        verbose_name_plural = "seat formats"
