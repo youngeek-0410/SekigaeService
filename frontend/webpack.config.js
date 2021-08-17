@@ -10,16 +10,30 @@ module.exports = {
         filename: "application.js",
     },
     resolve: {
-        modules: ['node_modules'],
+        modules: [
+            path.resolve("./src"),
+            path.resolve("./node_modules")
+        ],
         extensions:[".js", ".ts", ".tsx"],
     },
     module: {
         rules: [
             {
-                test: [/\.ts$/, /\.tsx$/],
+                test: [/\.ts$/, /\.tsx$/,],
                 use: [
                     {loader: "babel-loader"},
-                    {loader:'ts-loader'}
+                    {loader:"ts-loader"},
+                ],
+            },
+            {
+                test: [/\.(png|jpe?g|gif|svg)$/i,],
+                use: [
+                    {
+                        loader: "file-loader",
+                        options:{
+                            name:'[path][name].[ext]',//
+                        },
+                    },
                 ],
             }
         ],
