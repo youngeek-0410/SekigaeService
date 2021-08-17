@@ -6,11 +6,11 @@ class TimestampModelMixin(models.Model):
     class Meta:
         abstract = True
 
-    create_at = models.DateTimeField(
-        verbose_name=_("create_at"),
+    created_at = models.DateTimeField(
+        verbose_name=_("created_at"),
         auto_now_add=True,
     )
-    update_at = models.DateTimeField(
-        verbose_name=_("update_at"),
+    updated_at = models.DateTimeField(
+        verbose_name=_("updated_at"),
         auto_now=True,
     )
