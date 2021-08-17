@@ -1,7 +1,9 @@
 from django.db import models
 from .seat_format import SeatFormat
+from core.models import TimestampModelMixin
 
-class Seat(models.Model):
+
+class Seat(TimestampModelMixin, models.Model):
     row = models.IntegerField()
     column = models.IntegerField()
     seat_format = models.ForeignKey(SeatFormat, on_delete=models.CASCADE)
