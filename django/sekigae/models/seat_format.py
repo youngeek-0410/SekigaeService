@@ -1,11 +1,10 @@
 from django.db import models
 from account.models import User
 from django.utils import timezone
+from core.models import TimestampModelMixin
 
 
-class SeatFormat(models.Model):
-    created_at = models.DateTimeField(default=timezone.now)
-    updated_at = models.DateTimeField(default=timezone.now)
+class SeatFormat(TimestampModelMixin, models.Model):
     name = models.CharField(max_length=250)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
