@@ -1,14 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import HelloWorld from './HelloWorld'
-
 const App: React.FC = () => {
     return(
-        <div>
-            <p>hi</p>
-            <HelloWorld />
-        </div>
+        <>
+        </>
     )
 }
 
