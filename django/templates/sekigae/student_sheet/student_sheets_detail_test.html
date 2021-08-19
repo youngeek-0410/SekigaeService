@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Page for StudentSheets Model</title>
+</head>
+<body>
+
+<h2>学生名簿一覧</h2>
+<div id="student-sheets"></div>
+<h2></h2>
+
+
+<h2>GET</h2>
+<h3>Response</h3>
+<div id="response-get"></div>
+<form id="form-get">
+    <label for="pk-get">Pk
+        <input type="text" name="pk" id="pk-get">
+    </label>
+    <input id="button-get" value="GET" type="button">
+</form>
+
+<h2>PATCH</h2>
+<h3>Response</h3>
+<div id="response-patch"></div>
+<form id="form-patch">
+    <input type="hidden" name="_METHOD" value="PATCH">
+    <label for="pk-patch">Pk
+        <input type="text" name="pk" id="pk-patch">
+    </label>
+    <label for="name-patch">変更後の名前
+        <input type="text" name="name" id="name-patch">
+    </label>
+    <input id="button-patch" value="PATCH" type="button">
+    {% csrf_token %}
+</form>
+
+<h2>DELETE</h2>
+<h3>Response</h3>
+<div id="response-delete"></div>
+<form id="form-delete">
+    <input type="hidden" name="_METHOD" value="DELETE">
+    <label for="pk-delete">Pk
+        <input type="text" name="pk" id="pk-delete">
+    </label>
+    <input id="button-delete" value="DELETE" type="button">
+    {% csrf_token %}
+</form>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+
+
+<script>
+    function getStudentSheets() {
+        const url = "http://localhost/student_sheets";
+        $.get(url, null, function (data) {
+            $("#student-sheets").text(data);
+        })
+    }
+
+    $(function () {
+        getStudentSheets()
+        $("#button-get").click(function () {
+            const url = "http://localhost/student_sheets/" + $("#pk-get").val()
+            $.get(url, null, function (data) {
+                $("#pk-get").val('')
+                $("#response-get").text(data)
+            })
+        })
+
+        $("#button-patch").click(function () {
+            const url = "http://localhost/student_sheets/" + $("#pk-patch").val();
+            const formData = $("#form-patch").serialize();
+            $.post(url, formData, function (data) {
+                $("#response-patch").text(data);
+                getStudentSheets()
+            });
+        })
+
+        $("#button-delete").click(function () {
+            const url = "http://localhost/student_sheets/" + $("#pk-delete").val();
+            const formData = $("#form-delete").serialize();
+            $.post(url, formData, function (data) {
+                $("#response-delete").text(data);
+                getStudentSheets()
+            });
+        })
+    })
+</script>
+</body>
+
+</html>
