@@ -5,20 +5,20 @@ from django.core import serializers
 
 
 def student_sheets(request):
-    owner = request.user
+    user = request.user
     if request.method == 'GET':
-        sheets = StudentSheet.objects.filter(owner_id=owner.pk)
+        sheets = StudentSheet.objects.filter(owner_id=user.pk)
         sheets_json = serializers.serialize('json', sheets)
         return HttpResponse(sheets_json)
     elif request.method == 'POST':
-        sheet = StudentSheet(name=request.POST['name'], owner_id=owner.pk)
+        sheet = StudentSheet(name=request.POST['name'], owner_id=user.pk)
         sheet.save()
         return HttpResponse(sheet)
 
 
 def student_sheets_detail(request, pk):
-    owner = request.user
-    sheet = StudentSheet.objects.get(pk=pk, owner_id=owner.pk)
+    user = request.user
+    sheet = StudentSheet.objects.get(pk=pk, owner_id=user.pk)
     if request.method == 'GET':
         sheet_json = serializers.serialize('json', [sheet])
         return HttpResponse(sheet_json)
