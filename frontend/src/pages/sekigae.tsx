@@ -304,7 +304,6 @@ const Top: React.FC<{}> = () => {
           </div>
         </div>
       </div>
-      <Header/>
     </div>
   )
 }
