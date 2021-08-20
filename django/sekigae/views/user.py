@@ -2,12 +2,13 @@ from django.views.generic import TemplateView, DeleteView
 from ..account.models import User
 from django import http
 
-class UserView(TemplateView):
+class UserGetView(TemplateView):
 	template_name = 'account/base_account.html'
-	def get(self, request, *arg, **kwargs):
+	def get_context_data(self, **kwargs):
 		user = self.request.user
-		context = {'account': user}
-		return self.render_to_response(context)
+		context = super().get_context_data(**kwargs)
+		context['account'] = user
+		return context
 
 
 class UserDeleteView(DeleteView):
