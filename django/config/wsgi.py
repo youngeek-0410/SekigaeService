@@ -13,7 +13,7 @@ from django.core.wsgi import get_wsgi_application
 
 # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 
-envstate = os.getenv('ENV_STATE')
+envstate = os.environ.get('ENV_STATE')
 if envstate == 'production':
     # settings/production.py
     os.environ.setdefault('DJANGO_SETTINGS_MODULE',
