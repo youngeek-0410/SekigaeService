@@ -3,9 +3,15 @@ import * as React from "react"
 import { jsx } from "@emotion/react"
 import { css } from "@emotion/react"
 
-const StartButton: React.FC = (prop) => {
+//注意！onClickの型はどんな関数を入れるか定まっていないのでany
+interface Props{
+  text: string
+  onClick?: any
+}
+
+const FilledButton: React.FC<Props> = ({text,onClick}) => {
   return (
-    <div
+    <div onClick={onClick}
       css={css({
         color:"white",
         fontSize:"18px",
@@ -19,9 +25,10 @@ const StartButton: React.FC = (prop) => {
         backgroundColor: "rgba(96,168,176,0.75)",
         boxShadow: "4px 4px 4px rgba(0,0,0,0.25)",
         borderRadius: "8px",
+        userSelect:"none",
       })}
-    ><p>席替えを始める</p></div>
+    ><p>{text}</p></div>
   )
 }
 
-export default StartButton
+export default FilledButton

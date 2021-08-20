@@ -3,8 +3,8 @@ import * as React from "react"
 import { jsx } from "@emotion/react"
 import { css } from "@emotion/react"
 
-import StartButton from "components/atom/startButton"
-import AskButton from "components/atom/askButton"
+import FilledButton from "components/atom/filledButton"
+import LineButton from "components/atom/lineButton"
 
 const MenuBar: React.FC = () => {
   return (
@@ -45,8 +45,8 @@ const MenuBar: React.FC = () => {
         <div css={css({
           display:"flex",
         })}>
-          <div css={css({marginInline:"2rem"})}><StartButton /></div>
-          <div css={css({marginInline:"2rem"})}><AskButton /></div>
+          <div css={css({marginInline:"2rem"})}><FilledButton text="席替えを始める"/></div>
+          <div css={css({marginInline:"2rem"})}><LineButton text="お問い合わせ"/></div>
           <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
           </svg>

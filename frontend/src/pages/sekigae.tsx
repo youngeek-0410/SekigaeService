@@ -1,14 +1,15 @@
 /** @jsx jsx */
 import * as React from "react"
-import { jsx } from "@emotion/react"
-import { css } from "@emotion/react"
+import { jsx, css } from "@emotion/react"
 
-import StartButton from "components/atom/startButton"
+import FilledButton from "components/atom/filledButton"
 import MenuBar from "components/organism/menuBar"
 
 import bgURL from "assets/classroom.png"
 import workman from "assets/workman.png"
 import logo from "assets/YounGeekLogo.png"
+
+import Header from 'components/organism/header'
 
 const primary = "#F9F871"
 const secondary = "#60A8B0"
@@ -71,7 +72,7 @@ const Top: React.FC = () => {
             <div css={css({
               marginTop: "5rem",
             })}>
-              <StartButton />
+              <FilledButton text="席替えを始める"/>
             </div>
           </div>
         </div>
@@ -238,7 +239,7 @@ const Top: React.FC = () => {
           <div css={css({
             margin: "0 auto",
           })}>
-            <StartButton />
+            <FilledButton text="席替えを始める"/>
           </div>
         </div>
       </div>
@@ -253,8 +254,6 @@ const Top: React.FC = () => {
         height: "150px",
       })}>
       </div>
-
-
 
       {/*Footer*/}
       <div css={css({
@@ -282,7 +281,7 @@ const Top: React.FC = () => {
               alt="YounGeekLogo" />
             <p css={heading}>YounGeek</p>
           </div>
-          <div css={css({ width: "80vw" })}><div css={subHeading}>YounGeekは高先生で構成されたWebエンジニアSlackコミュニティです。</div></div>
+          <div css={css({ width: "80vw" })}><div css={subHeading}>YounGeekは高専生で構成されたWebエンジニアSlackコミュニティです。</div></div>
           <div css={css({
             width: "80vw",
             display: "flex",
@@ -305,6 +304,7 @@ const Top: React.FC = () => {
           </div>
         </div>
       </div>
+      <Header/>
     </div>
   )
 }

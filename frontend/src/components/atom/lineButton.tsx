@@ -3,9 +3,15 @@ import * as React from "react"
 import { jsx } from "@emotion/react"
 import { css } from "@emotion/react"
 
-const AskButton: React.FC = (prop) => {
+//注意！onClickの型はどんな関数を入れるか定まっていないのでany
+interface Props{
+  text: string
+  onClick?: any
+}
+
+const LineButton: React.FC<Props> = ({text,onClick}) => {
   return (
-    <div
+    <div onClick={onClick}
       css={css({
         color:"white",
         fontSize:"18px",
@@ -19,8 +25,9 @@ const AskButton: React.FC = (prop) => {
         border: "1px solid #FFFFFF",
         boxSizing: "border-box",
         borderRadius: "8px",
-      })}>お問い合わせ</div>
+        userSelect:"none",
+      })}>{text}</div>
   )
 }
 
-export default AskButton
+export default LineButton
