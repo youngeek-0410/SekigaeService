@@ -1,11 +1,11 @@
 from django.db import models
-from account.models import User
+from django.contrib.auth import get_user_model
 from django.utils import timezone
 from core.models import TimestampModelMixin
 
 
 class StudentSheet(TimestampModelMixin, models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
 
     def __str__(self):
