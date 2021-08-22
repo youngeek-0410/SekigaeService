@@ -13,7 +13,6 @@
     "stylelint": "^13.13.1"
   },
   "scripts": {
-    // "commitmsg": "commitlint -e $GIT_PARAMS", // TODO: commit message lint
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "lint-staged"
   },
