@@ -3,12 +3,19 @@
   "version": "1.0.0",
   "description": "Sekigae Service Project",
   "main": "index.js",
-  "dependencies": {
-    "prettier": "^2.3.2"
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "husky": "^7.0.1",
+    "lint-staged": "^11.1.2",
+    "markdownlint": "^0.23.1",
+    "prettier": "^2.3.2",
+    "stylelint": "^13.13.1"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    // "commitmsg": "commitlint -e $GIT_PARAMS", // TODO: commit message lint
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "lint-staged"
   },
   "repository": {
     "type": "git",
@@ -19,5 +26,41 @@
   "bugs": {
     "url": "https://github.com/youngeek-0410/SekigaeService/issues"
   },
-  "homepage": "https://github.com/youngeek-0410/SekigaeService#readme"
+  "homepage": "https://github.com/youngeek-0410/SekigaeService#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "linters": {
+      "*.py": [
+        "isort -m 3",
+        "autoflake -i --remove-all-unused-imports --ignore-init-module-imports --remove-unused-variables",
+        "black",
+        "flake8",
+        "git add"
+      ],
+      "*.js": [
+        "prettier --write",
+        "eslint --fix",
+        "git add"
+      ],
+      "*.{css,less,scss,sss}": [
+        "prettier --write",
+        "stylelint --fix",
+        "git add"
+      ],
+      "*.tsx": [
+        "prettier --write",
+        "eslint --fix",
+        "stylelint --fix",
+        "git add"
+      ],
+      "*.md": [
+        "markdownlint",
+        "git add"
+      ]
+    }
+  }
 }
