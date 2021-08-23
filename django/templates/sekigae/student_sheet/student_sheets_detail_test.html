@@ -61,6 +61,22 @@
         })
     }
 
+    function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
     $(function () {
         getStudentSheets()
         $("#button-get").click(function () {
@@ -72,21 +88,33 @@
         })
 
         $("#button-patch").click(function () {
-            const url = "http://localhost/student_sheets/" + $("#pk-patch").val();
-            const formData = $("#form-patch").serialize();
-            $.post(url, formData, function (data) {
-                $("#response-patch").text(data);
-                getStudentSheets()
-            });
+            const url = "http://localhost/student_sheets/" + $('#pk-patch').val();
+            const data = {'name': $('#name-patch').val()}
+            $.ajax({
+                type: 'patch',
+                url: url,
+                headers: {'X-CSRFToken': getCookie('csrftoken')},
+                data: JSON.stringify(data),
+                success: function (data) {
+                    $('#name-post').val('')
+                    $('#response-patch').text(data)
+                    getStudentSheets()
+                }
+            })
         })
 
         $("#button-delete").click(function () {
-            const url = "http://localhost/student_sheets/" + $("#pk-delete").val();
-            const formData = $("#form-delete").serialize();
-            $.post(url, formData, function (data) {
-                $("#response-delete").text(data);
-                getStudentSheets()
-            });
+            const url = "http://localhost/student_sheets/" + $('#pk-delete').val();
+            $.ajax({
+                type: 'delete',
+                url: url,
+                headers: {'X-CSRFToken': getCookie('csrftoken')},
+                success: function (data) {
+                    $('#name-delete').val('')
+                    $('#response-delete').text(data)
+                    getStudentSheets()
+                }
+            })
         })
     })
 </script>
