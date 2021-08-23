@@ -1,19 +1,25 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from "react"
+import ReactDOM from "react-dom"
 
-import Top from 'pages/sekigae'
+import Top from "pages/sekigae"
+import Header from "components/organism/header"
 
-const App: React.FC = () => {
-    return(
-        <>
-            <Top />
-        </>
-    )
+const headerElement = document.getElementById("header")
+if (headerElement) {
+  ReactDOM.render(
+    <React.StrictMode>
+      <Header />
+    </React.StrictMode>,
+    headerElement
+  )
 }
 
-ReactDOM.render(
+const topElement = document.getElementById("top")
+if (topElement) {
+  ReactDOM.render(
     <React.StrictMode>
-        <App />
+      <Top />
     </React.StrictMode>,
-    document.getElementById('app')
-)
+    topElement
+  )
+}
