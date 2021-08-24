@@ -11,7 +11,7 @@ updates:
       - "lemonadern"
     assignees:
       - "kathmandu777"
-    open-pull-requests-limit: 15
+    open-pull-requests-limit: 5
     target-branch: "master"
 
   - package-ecosystem: "npm"
@@ -25,7 +25,7 @@ updates:
       - "lemonadern"
     assignees:
       - "kathmandu777"
-    open-pull-requests-limit: 15
+    open-pull-requests-limit: 5
     target-branch: "master"
 
   - package-ecosystem: "pip"
@@ -39,7 +39,7 @@ updates:
       - "lemonadern"
     assignees:
       - "kathmandu777"
-    open-pull-requests-limit: 15
+    open-pull-requests-limit: 5
     target-branch: "master"
 
   - package-ecosystem: "pip"
@@ -53,6 +53,6 @@ updates:
       - "lemonadern"
     assignees:
       - "kathmandu777"
-    open-pull-requests-limit: 15
+    open-pull-requests-limit: 5
     target-branch: "master"
  
