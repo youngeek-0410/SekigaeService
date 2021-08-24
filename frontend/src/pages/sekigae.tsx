@@ -14,7 +14,7 @@ const primary = "#F9F871"
 const secondary = "#60A8B0"
 const tertiary = "#555555"
 
-const Top: React.FC = () => {
+const Top: React.FC<{}> = () => {
   const heading = css({
     color: primary,
     fontSize: "4vw",

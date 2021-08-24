@@ -6,7 +6,7 @@ import { css } from "@emotion/react"
 import StartButton from "components/atom/startButton"
 import AskButton from "components/atom/askButton"
 
-const MenuBar: React.FC = () => {
+const MenuBar: React.FC<{}> = () => {
   return (
     <div
       css={css({
