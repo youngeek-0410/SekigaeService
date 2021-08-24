@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 
 import Top from 'pages/sekigae'
 
-const App: React.FC = () => {
+const App: React.FC<{}> = () => {
     return(
         <>
             <Top />
