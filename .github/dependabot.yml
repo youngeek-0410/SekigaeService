@@ -13,6 +13,8 @@ updates:
       - "kathmandu777"
     open-pull-requests-limit: 5
     target-branch: "master"
+    labels:
+      - "dependencies"
 
   - package-ecosystem: "npm"
     directory: "/frontend"
@@ -27,6 +29,8 @@ updates:
       - "kathmandu777"
     open-pull-requests-limit: 5
     target-branch: "master"
+    labels:
+      - "dependencies"
 
   - package-ecosystem: "pip"
     directory: "/"
@@ -41,6 +45,8 @@ updates:
       - "kathmandu777"
     open-pull-requests-limit: 5
     target-branch: "master"
+    labels:
+      - "dependencies"
 
   - package-ecosystem: "pip"
     directory: "/django"
@@ -55,4 +61,7 @@ updates:
       - "kathmandu777"
     open-pull-requests-limit: 5
     target-branch: "master"
+    labels:
+      - "dependencies"
+    
  
