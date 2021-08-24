@@ -11,8 +11,15 @@ updates:
       - "lemonadern"
     assignees:
       - "kathmandu777"
-    open-pull-requests-limit: 15
+    open-pull-requests-limit: 5
     target-branch: "master"
+    labels:
+      - "dependencies"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    commit-message:
+      prefix: "dependabot"
 
   - package-ecosystem: "npm"
     directory: "/frontend"
@@ -25,8 +32,15 @@ updates:
       - "lemonadern"
     assignees:
       - "kathmandu777"
-    open-pull-requests-limit: 15
+    open-pull-requests-limit: 5
     target-branch: "master"
+    labels:
+      - "dependencies"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    commit-message:
+      prefix: "dependabot"
 
   - package-ecosystem: "pip"
     directory: "/"
@@ -39,8 +53,15 @@ updates:
       - "lemonadern"
     assignees:
       - "kathmandu777"
-    open-pull-requests-limit: 15
+    open-pull-requests-limit: 5
     target-branch: "master"
+    labels:
+      - "dependencies"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    commit-message:
+      prefix: "dependabot"
 
   - package-ecosystem: "pip"
     directory: "/django"
@@ -53,6 +74,13 @@ updates:
       - "lemonadern"
     assignees:
       - "kathmandu777"
-    open-pull-requests-limit: 15
+    open-pull-requests-limit: 5
     target-branch: "master"
+    labels:
+      - "dependencies"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    commit-message:
+      prefix: "dependabot"
  
