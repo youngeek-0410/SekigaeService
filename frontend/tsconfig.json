@@ -2,7 +2,10 @@
     "compilerOptions": {
         "target": "esnext",
         "jsx": "preserve",
-
+        "typeRoots": [
+            "node_modules/@types",
+            "types"
+        ],
         "forceConsistentCasingInFileNames": true,
         "strict": true,
         "noImplicitAny": true,
@@ -15,6 +18,10 @@
         "isolatedModules": true,
         "allowSyntheticDefaultImports": true,
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx"],
+    "include": [
+        "src/**/*.ts", 
+        "src/**/*.tsx",
+        "types/**/*"
+    ],
     "exclude": ["node_modules"]
 }
