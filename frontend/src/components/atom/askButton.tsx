@@ -1,9 +1,8 @@
 /** @jsx jsx */
-import * as React from "react"
 import { jsx } from "@emotion/react"
 import { css } from "@emotion/react"
 
-const AskButton: React.FC = (prop) => {
+const AskButton = () => {
   return (
     <div
       css={css({
