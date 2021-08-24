@@ -1,0 +1,58 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    reviewers:
+      - "kathmandu777"
+      - "lemonadern"
+    assignees:
+      - "kathmandu777"
+    open-pull-requests-limit: 15
+    target-branch: "master"
+
+  - package-ecosystem: "npm"
+    directory: "/frontend"
+    schedule:
+      interval: "daily"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    reviewers:
+      - "kathmandu777"
+      - "lemonadern"
+    assignees:
+      - "kathmandu777"
+    open-pull-requests-limit: 15
+    target-branch: "master"
+
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    reviewers:
+      - "kathmandu777"
+      - "lemonadern"
+    assignees:
+      - "kathmandu777"
+    open-pull-requests-limit: 15
+    target-branch: "master"
+
+  - package-ecosystem: "pip"
+    directory: "/django"
+    schedule:
+      interval: "daily"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    reviewers:
+      - "kathmandu777"
+      - "lemonadern"
+    assignees:
+      - "kathmandu777"
+    open-pull-requests-limit: 15
+    target-branch: "master"
+ 
