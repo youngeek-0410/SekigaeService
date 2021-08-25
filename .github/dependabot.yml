@@ -31,7 +31,7 @@ updates:
       - "kathmandu777"
       - "lemonadern"
     assignees:
-      - "kathmandu777"
+      - "lemonadern"
     open-pull-requests-limit: 5
     target-branch: "master"
     labels:
