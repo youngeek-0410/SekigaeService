@@ -1,14 +1,17 @@
+/** @jsx jsx */
+import * as React from "react"
+
+import { jsx } from "@emotion/react"
 import { css } from "@emotion/react"
 
-//注意！onClickの型はどんな関数を入れるか定まっていないのでany
 interface Props{
   text: string
-  onClick?: any
+  onClick?: (event: React.MouseEvent<HTMLInputElement>)=> void
 }
 
 const LineButton: React.FC<Props> = ({text,onClick}) => {
   return (
-    <div onClick={onClick}
+    <button onClick={onClick}
       css={css({
         color:"white",
         fontSize:"18px",
@@ -19,11 +22,12 @@ const LineButton: React.FC<Props> = ({text,onClick}) => {
         textAlign:"center",
         lineHeight:"72px",
 
-        border: "1px solid #FFFFFF",
+        backgroundColor: "rgba(0,0,0,0)",
         boxSizing: "border-box",
+        border: "1px solid #FFFFFF",
         borderRadius: "8px",
         userSelect:"none",
-      })}>{text}</div>
+      })}>{text}</button>
   )
 }
 

@@ -7,8 +7,8 @@ import firebase from "firebase"
 require("firebase/auth")
 import $ from "jquery"
 
-import FilledButton from "components/atom/filledButton"
-import LineButton from "components/atom/lineButton"
+import FilledButton from "components/atom/FilledButton"
+import LineButton from "components/atom/LineButton"
 
 const firebaseConfig = {
   apiKey: "AIzaSyAbxRa7smokqDD8jeBzqlcH18oPiyK53Ns",
@@ -19,7 +19,6 @@ const firebaseConfig = {
   appId: "1:495374335307:web:a552c2bdf679edc6547cce",
   measurementId: "G-SZZ1X0Y38Y"
 };
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 interface State {
@@ -84,8 +83,37 @@ class Header extends React.Component<{}, State> {
     return cookieValue;
   }
 
+  authorizationObj = (idToken) => {
+    return { "Authorization": `Bearer ${idToken}` };
+  }
+
+  djangoLogin = (isNewUser, idToken) => {
+    const url = "/signin-callback";
+    const headers = Object.assign(this.authorizationObj(idToken));
+
+    $.ajax({
+      url: url,
+      type: 'POST',
+      headers: headers
+    }).done((response) => {
+      window.location.href = response;
+    })
+  }
+
+
   signIn() {
-    window.location.href = "signin"
+    const provider = new firebase.auth.GoogleAuthProvider()
+    //window.location.href = "signin"
+    firebase.auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+        const idToken = firebase.auth().currentUser.getIdToken(true)
+        this.djangoLogin('', idToken)
+        this.setState({ userName: result.user.displayName })
+      }).catch((error) => {
+        console.log("エラーコード:" + error.code)
+        console.log(error.message)
+      })
   }
 
   djangoSignout() {
@@ -115,30 +143,27 @@ class Header extends React.Component<{}, State> {
   render() {
     return (
       <div css={css({
-        width:"100%",
-        justifyContent:"center",
-      })}>
-      <div css={css({
-        width: "90vw",
+        width: "100%",
         height: "100px",
         backgroundColor: "#555555",
-        margin:"0 auto",
+        margin: "0 auto",
         display: "flex",
         justifyContent: "space-between",
       })}>
-        <div><h3 css={css({
-          color:"white",
+        <h3 css={css({
+          color: "white",
           fontSize: "min(5vw,80px)",
-          lineHeight: "100px",
-        })}>[App name]</h3></div>
+          lineHeight: "80px",
+          marginLeft:"2rem",
+        })}>App name</h3>
         <div css={css({
-          display:"flex",
-          alignItems:"center"
+          display: "flex",
+          alignItems: "center"
         })}>
           {this.state.isLogined &&
             <div css={css({
               display: "flex",
-              alignItems:"center",
+              alignItems: "center",
             })}>
               <div css={css({
                 display: "flex",
@@ -150,24 +175,24 @@ class Header extends React.Component<{}, State> {
                 })}>{this.state.userName}としてログインしています</p>
               </div>
               <div css={css({
-                marginInline:"1rem",
+                marginInline: "2rem",
               })}>
-              <LineButton text="sign out" onClick={this.signOut} />
+                <LineButton text="sign out" onClick={this.signOut} />
               </div>
             </div>
           }
           {!this.state.isLogined &&
             <div css={css({
-              display:"flex",
-              paddingBlock:"auto 0",
-              alignItems:"center",
-              justifyContent:"center",
+              display: "flex",
+              paddingBlock: "auto 0",
+              alignItems: "center",
+              justifyContent: "center",
+              marginInline: "2rem",
             })}>
-            <FilledButton text="sign in" onClick={this.signIn} />
+              <FilledButton text="sign in" onClick={this.signIn} />
             </div>
           }
         </div>
-      </div>
       </div>
     )
   }
