@@ -1,5 +1,7 @@
 /** @jsx jsx */
 import * as React from "react"
+import ReactDOM from 'react-dom'
+
 import { jsx } from "@emotion/react"
 import { css } from "@emotion/react"
 
@@ -309,4 +311,9 @@ const Top: React.FC<{}> = () => {
   )
 }
 
-export default Top
+ReactDOM.render(
+    <React.StrictMode>
+        <Top />
+    </React.StrictMode>,
+    document.getElementById('app')
+)
