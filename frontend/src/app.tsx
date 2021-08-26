@@ -1,8 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom"
 
-import Top from "pages/sekigae"
-import Header from "components/organism/header"
+import Top from "pages/Top"
+import Header from "components/organism/Header"
 
 const headerElement = document.getElementById("header")
 if (headerElement) {

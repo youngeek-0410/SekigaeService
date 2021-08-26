@@ -2,8 +2,8 @@
 import * as React from "react"
 import { jsx, css } from "@emotion/react"
 
-import FilledButton from "components/atom/filledButton"
-import MenuBar from "components/organism/menuBar"
+import FilledButton from "components/atom/FilledButton"
+import MenuBar from "components/organism/MenuBar"
 
 import bgURL from "assets/classroom.png"
 import workman from "assets/workman.png"
