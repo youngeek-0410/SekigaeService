@@ -1,6 +1,9 @@
 /** @jsx jsx */
 import * as React from "react"
-import { jsx, css } from "@emotion/react"
+import ReactDOM from "react-dom"
+
+import { jsx } from "@emotion/react"
+import { css } from "@emotion/react"
 
 import FilledButton from "components/atom/FilledButton"
 import MenuBar from "components/organism/MenuBar"
@@ -306,4 +309,9 @@ const Top: React.FC<{}> = () => {
   )
 }
 
-export default Top
+ReactDOM.render(
+    <React.StrictMode>
+        <Top />
+    </React.StrictMode>,
+    document.getElementById('app')
+)

@@ -8,9 +8,6 @@ updates:
       timezone: "Asia/Tokyo"
     reviewers:
       - "kathmandu777"
-      - "lemonadern"
-    assignees:
-      - "kathmandu777"
     open-pull-requests-limit: 5
     target-branch: "master"
     labels:
@@ -28,10 +25,7 @@ updates:
       time: "09:00"
       timezone: "Asia/Tokyo"
     reviewers:
-      - "kathmandu777"
       - "lemonadern"
-    assignees:
-      - "kathmandu777"
     open-pull-requests-limit: 5
     target-branch: "master"
     labels:
@@ -50,9 +44,6 @@ updates:
       timezone: "Asia/Tokyo"
     reviewers:
       - "kathmandu777"
-      - "lemonadern"
-    assignees:
-      - "kathmandu777"
     open-pull-requests-limit: 5
     target-branch: "master"
     labels:
@@ -70,9 +61,6 @@ updates:
       time: "09:00"
       timezone: "Asia/Tokyo"
     reviewers:
-      - "kathmandu777"
-      - "lemonadern"
-    assignees:
       - "kathmandu777"
     open-pull-requests-limit: 5
     target-branch: "master"

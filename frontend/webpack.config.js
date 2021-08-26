@@ -1,13 +1,15 @@
 const path = require("path")
-// const HtmlWebpackPlugin = require("html-webpack-plugin")
+const getEntries = require("./lib/getEntries.js")
+
+const entries = getEntries("./src/pages/")
 
 module.exports = {
     mode: "development",
     cache: true,
-    entry: path.resolve(__dirname, "src/app.tsx"),
+    entry: entries,
     output: {
-        path: path.resolve(__dirname, "static/dist/"),
-        filename: "application.js",
+        path: path.resolve(__dirname, "dist/"),
+        filename: "[name].bundle.js",
     },
     resolve: {
         modules: [
