@@ -9,8 +9,6 @@ import bgURL from "assets/classroom.png"
 import workman from "assets/workman.png"
 import logo from "assets/YounGeekLogo.png"
 
-import Header from 'components/organism/header'
-
 const primary = "#F9F871"
 const secondary = "#60A8B0"
 const tertiary = "#555555"
