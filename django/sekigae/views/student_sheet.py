@@ -30,32 +30,32 @@ class StudentSheetDetailView(LoginRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         pk = kwargs['pk']
-        sheet = StudentSheet.objects.get(pk=pk)
-        if sheet.owner.pk != request.user.pk:
-            return JsonResponse({"error": "You do not have access rights."}, status=403)
+        sheet = StudentSheet.objects.filter(pk=pk).first()
         if sheet is None:
             return JsonResponse({"error": "Could not query the student sheet"}, status=404)
+        if sheet.owner.pk != request.user.pk:
+            return JsonResponse({"error": "You do not have access rights."}, status=403)
         sheet_json = serializers.serialize('json', [sheet])
         return HttpResponse(sheet_json)
 
     def delete(self, request, *args, **kwargs):
         pk = kwargs['pk']
-        sheet = StudentSheet.objects.get(pk=pk)
-        if sheet.owner.pk != request.user.pk:
-            return JsonResponse({"error": "You do not have access rights."}, status=403)
+        sheet = StudentSheet.objects.filter(pk=pk).first()
         if sheet is None:
             return JsonResponse({"error": "Could not query the student sheet"}, status=404)
+        if sheet.owner.pk != request.user.pk:
+            return JsonResponse({"error": "You do not have access rights."}, status=403)
         sheet.delete()
         sheet_json = serializers.serialize('json', [sheet])
         return HttpResponse(sheet_json)
 
     def patch(self, request, *args, **kwargs):
         pk = kwargs['pk']
-        sheet = StudentSheet.objects.get(pk=pk)
-        if sheet.owner.pk != request.user.pk:
-            return JsonResponse({"error": "You do not have access rights."}, status=403)
+        sheet = StudentSheet.objects.filter(pk=pk).first()
         if sheet is None:
             return JsonResponse({"error": "Could not query the student sheet"}, status=404)
+        if sheet.owner.pk != request.user.pk:
+            return JsonResponse({"error": "You do not have access rights."}, status=403)
         json_data = json.loads(request.body)
         sheet.name = json_data['name']
         sheet.save()
