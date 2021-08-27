@@ -1,5 +1,5 @@
 from sekigae.models import StudentSheet
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.core import serializers
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -31,12 +31,20 @@ class StudentSheetDetailView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         pk = kwargs['pk']
         sheet = StudentSheet.objects.get(pk=pk)
+        if sheet.owner.pk != request.user.pk:
+            return JsonResponse({"error": "You do not have access rights."}, status=403)
+        if sheet is None:
+            return JsonResponse({"error": "Could not query the student sheet"}, status=404)
         sheet_json = serializers.serialize('json', [sheet])
         return HttpResponse(sheet_json)
 
     def delete(self, request, *args, **kwargs):
         pk = kwargs['pk']
         sheet = StudentSheet.objects.get(pk=pk)
+        if sheet.owner.pk != request.user.pk:
+            return JsonResponse({"error": "You do not have access rights."}, status=403)
+        if sheet is None:
+            return JsonResponse({"error": "Could not query the student sheet"}, status=404)
         sheet.delete()
         sheet_json = serializers.serialize('json', [sheet])
         return HttpResponse(sheet_json)
@@ -44,6 +52,10 @@ class StudentSheetDetailView(LoginRequiredMixin, View):
     def patch(self, request, *args, **kwargs):
         pk = kwargs['pk']
         sheet = StudentSheet.objects.get(pk=pk)
+        if sheet.owner.pk != request.user.pk:
+            return JsonResponse({"error": "You do not have access rights."}, status=403)
+        if sheet is None:
+            return JsonResponse({"error": "Could not query the student sheet"}, status=404)
         json_data = json.loads(request.body)
         sheet.name = json_data['name']
         sheet.save()
