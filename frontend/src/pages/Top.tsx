@@ -71,7 +71,7 @@ const Top: React.FC<{}> = () => {
             <div css={css({
               marginTop: "5rem",
             })}>
-              <FilledButton text="席替えを始める"/>
+              <FilledButton>席替えを始める</FilledButton>
             </div>
           </div>
         </div>
@@ -238,7 +238,7 @@ const Top: React.FC<{}> = () => {
           <div css={css({
             margin: "0 auto",
           })}>
-            <FilledButton text="席替えを始める"/>
+            <FilledButton>席替えを始める</FilledButton>
           </div>
         </div>
       </div>

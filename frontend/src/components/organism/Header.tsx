@@ -1,6 +1,5 @@
-/** @jsx jsx */
-import React from "react"
-import { jsx } from "@emotion/react"
+import React, { useEffect, useState } from "react"
+
 import { css } from "@emotion/react"
 
 import firebase from "firebase"
@@ -21,181 +20,161 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 
-interface State {
-  isLogined: boolean,
-  userName: string
+function djangoSignout(): void {
+  $.ajax({
+    url: "signout",
+    type: 'POST',
+  }).done((response: string) => {
+    window.location.href = response
+  })
 }
 
-class Header extends React.Component<{}, State> {
-  constructor(props) {
-    super(props)
-    this.handleChangeIsLogined = this.handleChangeIsLogined.bind(this)
-    this.state = {
-      isLogined: false,
-      userName: '',
-    };
-  }
+function csrfSafeMethod(method: string) {
+  // these HTTP methods do not require CSRF protection
+  return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method))
+}
 
-  componentDidMount() {
+function getCookie(name: string): string {
+  var cookieValue: string = ""
+  if (document.cookie && document.cookie != "") {
+    var cookies = document.cookie.split(";")
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = $.trim(cookies[i])
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length + 1) == (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+        break
+      }
+    }
+  }
+  return cookieValue;
+}
+
+function authorizationObj(idToken: string) {
+  return { "Authorization": `Bearer ${idToken}` }
+}
+
+function djangoLogin(idToken: string) {
+  const url = "/signin-callback";
+  const headers = Object.assign(authorizationObj(idToken))
+  $.ajax({
+    url: url,
+    type: 'POST',
+    headers: headers
+  }).done((response) => {
+    window.location.href = response;
+  })
+}
+
+const Header: React.FC = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [userName, setUserName] = useState("")
+
+  useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.handleChangeIsLogined(true)
-        this.setState({ userName: user.displayName })
+      if (user?.displayName) {
+        setIsLoggedIn(true)
+        setUserName(user.displayName)
       } else {
-        this.handleChangeIsLogined(false)
+        setIsLoggedIn(false)
       }
     });
 
-    const csrftoken = this.getCookie('csrftoken');
+    const csrftoken = getCookie('csrftoken')
 
     $.ajaxSetup({
       crossDomain: false, // obviates need for sameOrigin test
       beforeSend: function (xhr, settings) {
-        if (!this.csrfSafeMethod(settings.type)) {
-          xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        //@ts-ignore
+        if (!csrfSafeMethod(settings.type)) {
+          xhr.setRequestHeader("X-CSRFToken", csrftoken)
         }
       }
-    });
-  }
-
-  handleChangeIsLogined(status) {
-    this.setState({ isLogined: status })
-  }
-
-  csrfSafeMethod(method) {
-    // these HTTP methods do not require CSRF protection
-    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-  }
-
-  getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie != '') {
-      var cookies = document.cookie.split(';');
-      for (var i = 0; i < cookies.length; i++) {
-        var cookie = $.trim(cookies[i]);
-        // Does this cookie string begin with the name we want?
-        if (cookie.substring(0, name.length + 1) == (name + '=')) {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-          break;
-        }
-      }
-    }
-    return cookieValue;
-  }
-
-  authorizationObj = (idToken) => {
-    return { "Authorization": `Bearer ${idToken}` };
-  }
-
-  djangoLogin = (isNewUser, idToken) => {
-    const url = "/signin-callback";
-    const headers = Object.assign(this.authorizationObj(idToken));
-
-    $.ajax({
-      url: url,
-      type: 'POST',
-      headers: headers
-    }).done((response) => {
-      window.location.href = response;
     })
-  }
+  })
 
-
-  signIn() {
+  function signIn() {
     const provider = new firebase.auth.GoogleAuthProvider()
-    //window.location.href = "signin"
     firebase.auth()
       .signInWithPopup(provider)
-      .then((result) => {
-        const idToken = firebase.auth().currentUser.getIdToken(true)
-        this.djangoLogin('', idToken)
-        this.setState({ userName: result.user.displayName })
+      .then(async (result) => {
+        //@ts-ignore
+        const idToken = await firebase.auth().currentUser.getIdToken(true)
+        djangoLogin(idToken)
+        //@ts-ignore
+        setUserName(result.user.displayName)
       }).catch((error) => {
         console.log("エラーコード:" + error.code)
         console.log(error.message)
       })
   }
-
-  djangoSignout() {
-    $.ajax({
-      url: "signout",
-      type: 'POST',
-    }).done((response) => {
-      window.location.href = response;
-    })
-  }
-
-  signOut() {
-    firebase.auth().onAuthStateChanged(user => {
+  function signOut() {
       firebase
         .auth()
         .signOut()
         .then(() => {
-          this.djangoSignout();
-          location.reload();
+          djangoSignout()
+          location.reload()
         })
         .catch((error) => {
-          console.log(`ログアウト時にエラーが発生しました (${error})`);
-        });
-    });
+          console.log(`ログアウト時にエラーが発生しました (${error})`)
+        })
   }
 
-  render() {
-    return (
+  return (
+    <div css={css({
+      width: "100%",
+      height: "100px",
+      backgroundColor: "#555555",
+      margin: "0 auto",
+      display: "flex",
+      justifyContent: "space-between",
+    })}>
+      <h3 css={css({
+        color: "white",
+        fontSize: "min(5vw,80px)",
+        lineHeight: "80px",
+        marginLeft: "2rem",
+      })}>App name</h3>
       <div css={css({
-        width: "100%",
-        height: "100px",
-        backgroundColor: "#555555",
-        margin: "0 auto",
         display: "flex",
-        justifyContent: "space-between",
+        alignItems: "center"
       })}>
-        <h3 css={css({
-          color: "white",
-          fontSize: "min(5vw,80px)",
-          lineHeight: "80px",
-          marginLeft:"2rem",
-        })}>App name</h3>
-        <div css={css({
-          display: "flex",
-          alignItems: "center"
-        })}>
-          {this.state.isLogined &&
+        {isLoggedIn &&
+          <div css={css({
+            display: "flex",
+            alignItems: "center",
+          })}>
             <div css={css({
               display: "flex",
-              alignItems: "center",
             })}>
-              <div css={css({
-                display: "flex",
-              })}>
-                <p css={css({
-                  color: "white",
-                  fontSize: "18px",
-                  lineHeight: "50px",
-                })}>{this.state.userName}としてログインしています</p>
-              </div>
-              <div css={css({
-                marginInline: "2rem",
-              })}>
-                <LineButton text="sign out" onClick={this.signOut} />
-              </div>
+              <p css={css({
+                color: "white",
+                fontSize: "18px",
+                lineHeight: "50px",
+              })}>{userName}としてログインしています</p>
             </div>
-          }
-          {!this.state.isLogined &&
             <div css={css({
-              display: "flex",
-              paddingBlock: "auto 0",
-              alignItems: "center",
-              justifyContent: "center",
               marginInline: "2rem",
             })}>
-              <FilledButton text="sign in" onClick={this.signIn} />
+              <LineButton onClick={signOut}>sign out</LineButton>
             </div>
-          }
-        </div>
+          </div>
+        }
+        {!isLoggedIn &&
+          <div css={css({
+            display: "flex",
+            paddingBlock: "auto 0",
+            alignItems: "center",
+            justifyContent: "center",
+            marginInline: "2rem",
+          })}>
+            <FilledButton onClick={signIn}>sign in</FilledButton>
+          </div>
+        }
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default Header

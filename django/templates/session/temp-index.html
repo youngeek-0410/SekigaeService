@@ -1,9 +1,10 @@
-<!-- TODO: refactoring -->
+{% extends "../base.html" %}
 
-{% extends 'base.html' %}
+{% load static %}
 
-{% block title %}temp top page{% endblock %}
+{% block title %}Top page{% endblock %}
 
 {% block content %}
-<div id="header"></div>
+  <div id="app"></div>
+  <script src="{% static 'dist/TempIndex.bundle.js' %}"></script>
 {% endblock %}
