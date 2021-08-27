@@ -1,17 +1,8 @@
-/** @jsx jsx */
-import * as React from "react"
-
-import { jsx } from "@emotion/react"
 import { css } from "@emotion/react"
 
-interface Props{
-  text: string
-  onClick?: (event: React.MouseEvent<HTMLInputElement>)=> void
-}
-
-const LineButton: React.FC<Props> = ({text,onClick}) => {
+const LineButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = props => {
   return (
-    <button onClick={onClick}
+    <button onClick={props.onClick}
       css={css({
         color:"white",
         fontSize:"18px",
@@ -27,7 +18,7 @@ const LineButton: React.FC<Props> = ({text,onClick}) => {
         border: "1px solid #FFFFFF",
         borderRadius: "8px",
         userSelect:"none",
-      })}>{text}</button>
+      })}>{props.children}</button>
   )
 }
 
