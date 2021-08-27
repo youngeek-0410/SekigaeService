@@ -1,8 +1,6 @@
-/** @jsx jsx */
 import * as React from "react"
 import ReactDOM from 'react-dom'
 
-import { jsx } from "@emotion/react"
 import { css } from "@emotion/react"
 
 import StartButton from "components/atom/startButton"
