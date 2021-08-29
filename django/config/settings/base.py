@@ -22,7 +22,7 @@ DEBUG = False
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 ALLOWED_HOSTS = []
 
@@ -115,3 +115,93 @@ AUTH_USER_MODEL = 'account.User'
 # custom authentication method
 AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
                            'session.backends.FirebaseAuthBackend']
+
+# logging
+LOG_HANDLER_LEVEL = os.environ.get("DJANGO_LOG_HANDLER_LEVEL", "WARNING")
+LOG_HANDLER_LEVEL_NULL = os.environ.get(
+    "DJANGO_LOG_HANDLER_LEVEL_NULL", LOG_HANDLER_LEVEL)
+LOG_HANDLER_LEVEL_CONSOLE = os.environ.get(
+    "DJANGO_LOG_HANDLER_LEVEL_CONSOLE", LOG_HANDLER_LEVEL
+)
+LOG_HANDLER_LEVEL_MAIL = os.environ.get(
+    "DJANGO_LOG_HANDLER_LEVEL_MAIL", LOG_HANDLER_LEVEL)
+LOG_HANDLER_LEVEL_FILE = os.environ.get(
+    "DJANGO_LOG_HANDLER_LEVEL_FILE", LOG_HANDLER_LEVEL)
+LOG_HANDLER_FILE_PATH = os.environ.get(
+    "DJANGO_LOG_HANDLER_FILE_PATH", "/var/log/django.log")
+LOG_LOGGER_LEVEL = os.environ.get("DJANGO_LOG_LOGGER_LEVEL", "WARNING")
+LOG_FILE_MAX_BYTES = int(os.environ.get(
+    "DJANGO_LOG_FILE_MAX_BYTES", 1024 * 1024))
+LOG_FILE_BACKUP_COUNT = int(os.environ.get("DJANGO_LOG_FILE_BACKUP_COUNT", 5))
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": '%(asctime)s [%(levelname)s] %(pathname)s:%(lineno)d %(message)s'
+        },
+        "simple": {"format": "%(levelname)s %(message)s"},
+    },
+    "filters": {},
+    "handlers": {
+        "null": {
+            "level": LOG_HANDLER_LEVEL_NULL,
+            "class": "logging.NullHandler",
+        },
+        "console": {
+            "level": LOG_HANDLER_LEVEL_CONSOLE,
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+        "mail": {
+            "level": LOG_HANDLER_LEVEL_MAIL,
+            "class": "django.utils.log.AdminEmailHandler",
+        },
+        "file": {
+            "level": LOG_HANDLER_LEVEL_FILE,
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": LOG_HANDLER_FILE_PATH,
+            "formatter": "verbose",
+            "maxBytes": LOG_FILE_MAX_BYTES,
+            "backupCount": LOG_FILE_BACKUP_COUNT,
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["null"],
+            "propagate": True,
+            "level": LOG_LOGGER_LEVEL,
+        },
+        "django.security.csrf": {
+            "handlers": ["console", "file"],
+            "level": LOG_LOGGER_LEVEL,
+            "propagate": False,
+        },
+        "django.request": {
+            "handlers": ["console", "file"],
+            "level": LOG_LOGGER_LEVEL,
+            "propagate": False,
+        },
+        "config": {
+            "handlers": ["console", "file"],
+            "level": LOG_LOGGER_LEVEL,
+        },
+        "account": {
+            "handlers": ["console", "file"],
+            "level": LOG_LOGGER_LEVEL,
+        },
+        "sekigae": {
+            "handlers": ["console", "file"],
+            "level": LOG_LOGGER_LEVEL,
+        },
+        "core": {
+            "handlers": ["console", "file"],
+            "level": LOG_LOGGER_LEVEL,
+        },
+        "session": {
+            "handlers": ["console", "file"],
+            "level": LOG_LOGGER_LEVEL,
+        },
+    },
+}

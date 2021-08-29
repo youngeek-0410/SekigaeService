@@ -1,18 +1,16 @@
 from django.db import models
-from account.models import User
+from django.contrib.auth import get_user_model
 from django.utils import timezone
+from core.models import TimestampModelMixin
 
 
-class StudentSheet(models.Model):
-	owner = models.ForeignKey(User, on_delete=models.CASCADE)
-	name = models.CharField(max_length=255)
-	created_at = models.DateTimeField(default=timezone.now)
-	updated_at = models.DateTimeField(default=timezone.now)
+class StudentSheet(TimestampModelMixin, models.Model):
+    owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
 
-	def __str__(self):
-		return self.name
+    def __str__(self):
+        return self.name
 
-	class Meta:
-		verbose_name = "student_sheet"
-		verbose_name_plural = "student_sheets"
-
+    class Meta:
+        verbose_name = "student sheet"
+        verbose_name_plural = "student sheets"

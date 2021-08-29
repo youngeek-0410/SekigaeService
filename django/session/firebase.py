@@ -5,7 +5,7 @@ import os
 
 cred = credentials.Certificate({
     "type": "service_account",
-    "project_id": os.getenv('FIREBASE_PROJECT_ID'),
+    "project_id": os.environ.get('FIREBASE_PROJECT_ID'),
     "private_key_id": os.environ.get('FIREBASE_PRIVATE_KEY_ID'),
     "private_key": os.environ.get('FIREBASE_PRIVATE_KEY').replace('\\n', '\n'),
     "client_email": os.environ.get('FIREBASE_CLIENT_EMAIL'),

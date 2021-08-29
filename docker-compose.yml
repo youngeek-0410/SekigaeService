@@ -20,7 +20,7 @@ services:
     command: npm run dev
     volumes:
       - ./frontend:/app
-      - ./django/static:/app/static
+      - ./django/static/dist/:/app/dist
       # node_modulesをdata volumeで保持
       - /app/node_modules
   postgres:

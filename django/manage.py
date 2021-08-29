@@ -7,19 +7,16 @@ import sys
 def main():
     """Run administrative tasks."""
     # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
-    envstate = os.getenv('ENV_STATE', 'local')
-    if envstate == 'production':
+    envstate = os.environ.get("ENV_STATE", "local")
+    if envstate == "production":
         # settings/production.py
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE',
-                              'config.settings.production')
-    elif envstate == 'staging':
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.production")
+    elif envstate == "staging":
         # settings/staging.py
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE',
-                              'config.settings.staging')
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.staging")
     else:
         # settings/local.py
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE',
-                              'config.settings.local')
+        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings.local")
 
     try:
         from django.core.management import execute_from_command_line
@@ -32,5 +29,5 @@ def main():
     execute_from_command_line(sys.argv)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

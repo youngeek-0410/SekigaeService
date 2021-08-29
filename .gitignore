@@ -1,5 +1,9 @@
 .env
 credentials.json
+node_modules/
+
+# pyenv
+.python-version
 
 # Created by https://www.toptal.com/developers/gitignore/api/django
 # Edit at https://www.toptal.com/developers/gitignore?templates=django
@@ -34,7 +38,6 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
 lib64/
 parts/
 sdist/
