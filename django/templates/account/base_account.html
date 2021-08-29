@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Userのテスト</title>
+</head>
+<body>
+
+<h2>User</h2>
+<p>{{account}}</p>
+<a href="{% url 'sekigae:user' %}">GET USER</a>
+<form method="delete" action="{% url 'sekigae:user' }">
+<button class="btn" type="submit" onclick='return confirm("本当に削除するか");'>DELETE</button>
+{{account}}
+<input type="submit" value="DELETE">
+{% csrf_token %}
+
+</form>
+</body>
+
+</html> 

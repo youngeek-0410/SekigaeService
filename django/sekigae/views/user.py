@@ -1,9 +1,10 @@
-from django.views.generic import TemplateView
-from ..account.models import User
+from django.views.generic import TemplateView, DeleteView
+from account.models import User
 from django import http
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class UserView(TemplateView):
+class UserView(LoginRequiredMixin, TemplateView):
     template_name = 'account/base_account.html'
 
     def get_context_data(self, **kwargs):
