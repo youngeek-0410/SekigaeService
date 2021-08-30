@@ -13,8 +13,10 @@
     <label for="name-post">Name
         <input type="text" name="name" id="name-post">
     </label>
+    <br>
+    <textarea name="json" id="json-post" cols="30" rows="10"></textarea>
+    <br>
     <input id="button-post" value="新規作成" type="button">
-    {% csrf_token %}
 </form>
 
 
@@ -26,7 +28,7 @@
     function getStudentSheets() {
         const url = "http://localhost/student_sheets";
         $.get(url, null, function (data) {
-            $("#student-sheets").text(data);
+            $("#student-sheets").text(JSON.stringify(data));
         })
     }
 
@@ -51,13 +53,13 @@
         getStudentSheets()
         $("#button-post").click(function () {
             const url = "http://localhost/student_sheets";
-            const data = {'name': $('#name-post').val()}
+            const data = $('#json-post').val()
             console.log(data)
             $.ajax({
                 type: 'post',
                 url: url,
                 headers: {'X-CSRFToken': getCookie('csrftoken')},
-                data: JSON.stringify(data),
+                data: data,
                 success: function(data){
                     $('#name-post').val('')
                     getStudentSheets()
