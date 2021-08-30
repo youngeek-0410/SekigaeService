@@ -6,12 +6,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.base import View
 import json
 
+
 def student_sheet_dict(sheet_id):
     students_dict = list(Student.objects.filter(student_sheet=sheet_id).values())
     sheet = StudentSheet.objects.filter(pk=sheet_id)
     sheet_dict = list(sheet.values())[0]
     return {"sheet": sheet_dict, "students": students_dict}
-
 
 
 class StudentSheetsView(LoginRequiredMixin, View):
