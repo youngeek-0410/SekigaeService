@@ -8,6 +8,10 @@
     "build": "webpack",
     "dev": "webpack -w"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/youngeek-0410/SekigaeService.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
