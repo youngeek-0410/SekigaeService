@@ -12,7 +12,12 @@ html {
 
 body {
   line-height: 1;
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: "Helvetica Neue",
+    Arial,
+    "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans",
+    Meiryo,
+    sans-serif;
   font-size: 14px;
   font-weight: 300;
   color: #333;
