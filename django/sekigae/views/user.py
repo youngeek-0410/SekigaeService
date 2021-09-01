@@ -1,11 +1,16 @@
-from django.views.generic import TemplateView, DeleteView
+from django.views.generic import TemplateView
 from account.models import User
 from django import http
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
 
 
 class UserView(LoginRequiredMixin, TemplateView):
     template_name = 'account/base_account.html'
+    model = User
+
+# def __init__(self, *args, **kwargs):	
+# model = User
 
     def get_context_data(self, **kwargs):
         user = self.request.user
@@ -13,14 +18,10 @@ class UserView(LoginRequiredMixin, TemplateView):
         context['account'] = user
         return context
 
-    model = User
-    success_url = 'base.html'
+    def get_success_url(self):
+        return reverse('sekigae:user')
 
     def delete(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        if self.object.User == request.user:
-            success_url = self.get_success_url()
-            self.object.delete()
-            return http.HttpResponceRedirect(success_url)
-        else:
-            return http.HttpResponceForbidden("cannot delete")
+        success_url = self.get_success_url()
+        request.user.delete()
+        return http.HttpResponseRedirect(success_url)

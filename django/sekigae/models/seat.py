@@ -6,7 +6,7 @@ from core.models import TimestampModelMixin
 class Seat(TimestampModelMixin, models.Model):
     row = models.IntegerField()
     column = models.IntegerField()
-    seat_format = models.ForeignKey(SeatFormat, on_delete=models.CASCADE)
+#seat_format = models.ForeignKey(SeatFormat, on_delete=models.CASCADE)
 
     def __str__(self):
         return "{}[{}][{}]".format(self.seat_format.name, self.row, self.column)
@@ -14,7 +14,8 @@ class Seat(TimestampModelMixin, models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["row", "column", "seat_format"],
+#fields=["row", "column", "seat_format"],
+                fields=["row", "column"],
                 name="unique_row_column"
             )
         ]

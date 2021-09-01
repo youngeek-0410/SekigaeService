@@ -6,7 +6,8 @@ from core.models import TimestampModelMixin
 
 class SeatFormat(TimestampModelMixin, models.Model):
     name = models.CharField(max_length=250)
-    owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+#    owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    owner = models.ForeignKey(get_user_model(), on_delete=models.PROTECT)
 
     def __str__(self):
         return self.name
