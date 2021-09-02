@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Userのテスト</title>
+</head>
+
+<body>
+
+    <h2>User</h2>
+    <p>{{user.username}}</p>
+    <p>{{user.email}}</p>
+    <form method="post" action="{% url 'account:user' %}">
+        <!-- TODO: フロント側で保持しているアカウントのセッションを破棄 -->
+        <input type="submit" value="delete" onclick='return confirm("本当に削除するか");'>
+        {% csrf_token %}
+    </form>
+
+</body>
+
+</html>
