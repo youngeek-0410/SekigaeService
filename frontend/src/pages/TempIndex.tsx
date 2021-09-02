@@ -1,17 +1,20 @@
 import * as React from "react"
 import ReactDOM from "react-dom"
 
-import Header from "components/organism/Header"
+import { Button } from "@material-ui/core"
 
-const TempIndex:React.FC=()=>{
-  return(
-    <Header/>
+const TempIndex: React.FC = () => {
+  return (
+    <Button
+      variant="contained"
+      color="primary"
+    >Hello, Material-UI!</Button>
   )
 }
 
 ReactDOM.render(
   <React.StrictMode>
-      <TempIndex />
+    <TempIndex />
   </React.StrictMode>,
   document.getElementById('app')
 )
