@@ -1,3 +1,4 @@
+from core.models import TimestampModelMixin
 from sekigae.models.seat import Seat
 from sekigae.models.seat_sheet import SeatSheet
 from sekigae.models.student import Student
@@ -5,13 +6,13 @@ from sekigae.models.student import Student
 from django.db import models
 
 
-class SeatPair(models.Model):
-    seat_id = models.ForeignKey(Seat, on_delete=models.CASCADE)
-    student_id = models.ForeignKey(Student, on_delete=models.CASCADE)
-    seat_sheet_id = models.ForeignKey(SeatSheet, on_delete=models.CASCADE)
+class SeatPair(TimestampModelMixin, models.Model):
+    seat = models.ForeignKey(Seat, on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    seat_sheet = models.ForeignKey(SeatSheet, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.seat_id
+        return self.seat + "&" + self.student
 
     class Meta:
         verbose_name = "seat_pair"
