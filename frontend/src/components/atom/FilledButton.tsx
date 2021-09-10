@@ -1,8 +1,8 @@
 import { css } from "@emotion/react"
 
-const StartButton = () => {
+const FilledButton: React.FC<React.ButtonHTMLAttributes<HTMLButtonElement>> = props => {
   return (
-    <div
+    <button onClick={props.onClick}
       css={css({
         color:"white",
         fontSize:"18px",
@@ -15,10 +15,11 @@ const StartButton = () => {
 
         backgroundColor: "rgba(96,168,176,0.75)",
         boxShadow: "4px 4px 4px rgba(0,0,0,0.25)",
+        border:"none",
         borderRadius: "8px",
-      })}
-    ><p>席替えを始める</p></div>
+        userSelect:"none",
+      })}>{props.children}</button>
   )
 }
 
-export default StartButton
+export default FilledButton

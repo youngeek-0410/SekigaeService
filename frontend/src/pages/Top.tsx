@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 
 import { css } from "@emotion/react"
 
-import StartButton from "components/atom/startButton"
-import MenuBar from "components/organism/menuBar"
+import FilledButton from "components/atom/FilledButton"
+import MenuBar from "components/organism/MenuBar"
 
 import bgURL from "assets/classroom.png"
 import workman from "assets/workman.png"
@@ -71,7 +71,7 @@ const Top: React.FC<{}> = () => {
             <div css={css({
               marginTop: "5rem",
             })}>
-              <StartButton />
+              <FilledButton>席替えを始める</FilledButton>
             </div>
           </div>
         </div>
@@ -238,7 +238,7 @@ const Top: React.FC<{}> = () => {
           <div css={css({
             margin: "0 auto",
           })}>
-            <StartButton />
+            <FilledButton>席替えを始める</FilledButton>
           </div>
         </div>
       </div>
@@ -253,8 +253,6 @@ const Top: React.FC<{}> = () => {
         height: "150px",
       })}>
       </div>
-
-
 
       {/*Footer*/}
       <div css={css({
@@ -282,7 +280,7 @@ const Top: React.FC<{}> = () => {
               alt="YounGeekLogo" />
             <p css={heading}>YounGeek</p>
           </div>
-          <div css={css({ width: "80vw" })}><div css={subHeading}>YounGeekは高先生で構成されたWebエンジニアSlackコミュニティです。</div></div>
+          <div css={css({ width: "80vw" })}><div css={subHeading}>YounGeekは高専生で構成されたWebエンジニアSlackコミュニティです。</div></div>
           <div css={css({
             width: "80vw",
             display: "flex",
