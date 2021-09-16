@@ -18,7 +18,7 @@ class SeatSheet(TimestampModelMixin, models.Model):
         verbose_name_plural = "seat_sheets"
         constraints = [
             models.UniqueConstraint(
-                fields=["name", "user_id"],
+                fields=["name", "owner_id"],
                 name="seat_sheet_unique",
             ),
         ]

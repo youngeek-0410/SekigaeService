@@ -12,7 +12,7 @@ class SeatPair(TimestampModelMixin, models.Model):
     seat_sheet = models.ForeignKey(SeatSheet, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.seat + "&" + self.student
+        return str(self.seat) + "&" + str(self.student)
 
     class Meta:
         verbose_name = "seat_pair"
