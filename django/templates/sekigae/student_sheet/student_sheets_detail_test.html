@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Page for StudentSheets Model</title>
+</head>
+<body>
+
+<h2>学生名簿一覧</h2>
+<div id="student-sheets"></div>
+<h2></h2>
+
+
+<h2>GET</h2>
+<h3>Response</h3>
+<div id="response-get"></div>
+<form id="form-get">
+    <label for="pk-get">Pk
+        <input type="text" name="pk" id="pk-get">
+    </label>
+    <input id="button-get" value="GET" type="button">
+</form>
+
+<h2>PATCH</h2>
+<h3>Response</h3>
+<div id="response-patch"></div>
+<form id="form-patch">
+    <input type="hidden" name="_METHOD" value="PATCH">
+    <label for="pk-patch">Pk
+        <input type="text" name="pk" id="pk-patch">
+    </label>
+    <br>
+
+    <textarea name="json" id="json-patch" cols="30" rows="10"></textarea>
+    <br>
+    <input id="button-patch" value="PATCH" type="button">
+</form>
+
+<h2>DELETE</h2>
+<h3>Response</h3>
+<div id="response-delete"></div>
+<form id="form-delete">
+    <input type="hidden" name="_METHOD" value="DELETE">
+    <label for="pk-delete">Pk
+        <input type="text" name="pk" id="pk-delete">
+    </label>
+    <input id="button-delete" value="DELETE" type="button">
+</form>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+
+
+<script>
+    function getStudentSheets() {
+        const url = "http://localhost/student_sheets";
+        $.get(url, null, function (data) {
+            $("#student-sheets").text(JSON.stringify(data));
+        })
+    }
+
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    $(function () {
+        getStudentSheets()
+        $("#button-get").click(function () {
+            const url = "http://localhost/student_sheets/" + $("#pk-get").val()
+            $.get(url, null, function (data) {
+                $("#pk-get").val('')
+                $("#response-get").text(JSON.stringify(data))
+            })
+        })
+
+        $("#button-patch").click(function () {
+            const url = "http://localhost/student_sheets/" + $('#pk-patch').val();
+            const data = $('#json-patch').val();
+            $.ajax({
+                type: 'patch',
+                url: url,
+                headers: {'X-CSRFToken': getCookie('csrftoken')},
+                data: data,
+                success: function (data) {
+                    $('#name-post').val('')
+                    $('#response-patch').text(data)
+                    getStudentSheets()
+                }
+            })
+        })
+
+        $("#button-delete").click(function () {
+            const url = "http://localhost/student_sheets/" + $('#pk-delete').val();
+            $.ajax({
+                type: 'delete',
+                url: url,
+                headers: {'X-CSRFToken': getCookie('csrftoken')},
+                success: function (data) {
+                    $('#name-delete').val('')
+                    $('#response-delete').text(JSON.stringify(data))
+                    getStudentSheets()
+                }
+            })
+        })
+    })
+</script>
+</body>
+
+</html>
