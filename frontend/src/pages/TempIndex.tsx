@@ -1,7 +1,7 @@
 import * as React from "react"
 import ReactDOM from "react-dom"
 
-import { Button } from "@material-ui/core"
+import { Button } from "@mui/material"
 
 const TempIndex: React.FC = () => {
   return (
