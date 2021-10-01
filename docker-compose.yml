@@ -15,14 +15,6 @@ services:
     depends_on:
       # 接続するサービス
       - postgres
-  frontend:
-    build: ./frontend
-    command: npm run dev
-    volumes:
-      - ./frontend:/app
-      - ./django/static/dist/:/app/dist
-      # node_modulesをdata volumeで保持
-      - /app/node_modules
   postgres:
     build: ./postgres
     volumes:
