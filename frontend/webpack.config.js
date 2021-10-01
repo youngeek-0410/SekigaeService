@@ -8,7 +8,7 @@ module.exports = {
     cache: true,
     entry: entries,
     output: {
-        path: path.resolve(__dirname, "dist/"),
+        path: path.resolve(__dirname, "../django/static/dist"),
         filename: "[name].bundle.js",
     },
     resolve: {
