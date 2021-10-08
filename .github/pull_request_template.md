@@ -1,21 +1,13 @@
-# 概要
-<!-- 何がどう変わる変更なのか -->
+# Overview <!-- What is the change -->
 
+# Issue number <!-- e.g. Close #123, Fix #456 -->
 
-# 対応するIssue
-<!-- Issueへのリンクを貼る（例：#123） -->
+Close #
 
+# How to check the revision
 
-# 修正内容の確認方法
-<!-- 修正がどう反映されるかを確認する手順（あれば） -->
+# Points for Review <!-- Things you want reviewers to check, etc. -->
 
+# Remarks <!-- Any other comments -->
 
-# レビューのポイント
-<!-- レビュワーに特に見てほしいポイント（あれば） -->
-
-
-# 備考
-<!-- 他PR, issueとの兼ね合いやその他考慮が必要な事項（あれば） -->
-
-
-<!-- 必ずしも全て埋めなくてよいが、必要な情報をわかりやすく書く。 -->
+<!-- You don't have to fill in all the blanks, but write the necessary information clearly. -->

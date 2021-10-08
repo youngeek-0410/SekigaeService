@@ -1,39 +1,27 @@
 ---
-name: 機能追加・改善
-about: 新しい機能の追加、既存の機能の改善
+name: Add or improve a feature
+about: Add new features, improve existing features
 title: ''
-labels: ''
+labels: 'type:feature'
 assignees: ''
-
 ---
 
-# 概要
-<!-- どこに / どんな改善を施したいのか -->
+# Overview <!-- where/what improvements you want to make -->
 
+# Background of the improvement <!-- background of the improvement needed -->
 
+# Requirements <!-- expected behavior or content to be met -->
 
-# 改善の背景
-<!-- 改善が必要とされる背景 -->
+# Considerations <!-- Items that need to be considered for improvement -->
 
+-
 
+# Implementation policy <!-- how to implement -->
 
-# 要件
-<!-- 期待される動作や満たされるべき内容を具体的に -->
+-
 
+# Test items <!-- how to check if the improvement has been implemented correctly -->
 
+-
 
-# 検討事項
-<!-- 改善を施すにあたり検討が必要な事項（あれば） -->
-- 
-
-
-# 実装方針
-<!-- どのように実装するのか -->
-- 
-
-
-# テスト項目
-<!--改善が正しく実装されたかどうかを確認する方法 -->
-- 
-
-<!-- 全て埋めなくても良いが、必要な情報をわかりやすく書く。 -->
+<!-- You don't have to fill in all the blanks, but write the necessary information clearly. -->
