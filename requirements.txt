@@ -2,7 +2,7 @@ appdirs==1.4.4
 asgiref==3.4.1
 autoflake==1.4
 black==21.9b0
-click==8.0.2
+click==8.0.3
 Django==3.2.8
 flake8==3.9.2
 isort==5.9.3
