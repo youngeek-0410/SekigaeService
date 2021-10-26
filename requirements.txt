@@ -14,4 +14,4 @@ pyflakes==2.4.0
 pytz==2021.3
 regex==2021.10.21
 sqlparse==0.4.2
-tomli==1.2.1
+tomli==1.2.2
