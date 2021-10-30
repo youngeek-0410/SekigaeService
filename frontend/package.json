@@ -38,7 +38,7 @@
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
     "@mui/material": "^5.0.4",
-    "@types/jquery": "^3.5.7",
+    "@types/jquery": "^3.5.8",
     "babel-plugin-module-resolver": "^4.1.0",
     "file-loader": "^6.2.0",
     "firebase": "^8.10.0",
