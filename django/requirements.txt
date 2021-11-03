@@ -21,7 +21,7 @@ gunicorn==20.1.0
 httplib2==0.20.2
 idna==3.3
 msgpack==1.0.2
-packaging==21.0
+packaging==21.2
 proto-plus==1.19.7
 protobuf==3.19.1
 psycopg2-binary==2.9.1
