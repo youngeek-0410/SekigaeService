@@ -14,6 +14,6 @@ fi
 cd /src/db
 poetry run alembic upgrade head
 cd /src
-poetry run uvicorn api.main:app --host 0.0.0.0 --reload
+poetry run uvicorn app.main:app --host 0.0.0.0 --reload
 
 exec $cmd
