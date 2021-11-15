@@ -1,8 +1,8 @@
 import os
 
-from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
+from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import scoped_session, sessionmaker
 
 DB_USER: str = os.getenv("DB_USER", "")
 DB_NAME: str = os.getenv("DB_USER", "")
@@ -15,14 +15,15 @@ DATABASE_URL: str = (
 )
 
 
-async_engine = create_async_engine(DATABASE_URL, echo=True)
-async_session = sessionmaker(
-    autocommit=False, autoflush=False, bind=async_engine, class_=AsyncSession
+engine = create_engine(DATABASE_URL, echo=True)
+local_session = scoped_session(
+    sessionmaker(autocommit=False, autoflush=False, bind=engine)
 )
 
 Base = declarative_base()
+Base.query = local_session.query_property()
 
 
-async def get_db():
-    async with async_session() as session:
+def get_db():
+    with local_session() as session:
         yield session
