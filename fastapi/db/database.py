@@ -1,8 +1,8 @@
 import os
 
-from sqlalchemy import create_engine
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy.orm import sessionmaker
 
 DB_USER: str = os.getenv("DB_USER", "")
 DB_NAME: str = os.getenv("DB_USER", "")
@@ -15,21 +15,14 @@ DATABASE_URL: str = (
 )
 
 
-engine = create_engine(DATABASE_URL, encoding="utf-8", echo=True)
-
-# 実際の DB セッション
-SessionLocal = scoped_session(
-    sessionmaker(autocommit=False, autoflush=False, bind=engine)
+async_engine = create_async_engine(DATABASE_URL, echo=True)
+async_session = sessionmaker(
+    autocommit=False, autoflush=False, bind=async_engine, class_=AsyncSession
 )
 
 Base = declarative_base()
-Base.query = SessionLocal.query_property()
 
 
-# Dependency Injection用
-def get_db():
-    try:
-        db = SessionLocal()
-        yield db
-    finally:
-        db.close()
+async def get_db():
+    async with async_session() as session:
+        yield session
