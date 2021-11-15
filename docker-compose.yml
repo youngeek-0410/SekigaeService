@@ -1,39 +1,34 @@
 version: "3.7"
 services:
-  django:
-    # ビルドするdockerファイルが格納されたディレクトリ
-    build: ./django
+  fastapi:
+    build: ./fastapi
     volumes:
-      # マウントするディレクトリ
-      - ./django:/code
-      - ./django/static:/code/static
-    expose:
-      - 8000
-    env_file:
-      # 環境変数に設定するファイル
-      - ./django/.env
+      - ./fastapi:/src
+    ports:
+      - 8000:8000
+    env_file: ./fastapi/fastapi.env
     depends_on:
-      # 接続するサービス
       - postgres
   postgres:
     build: ./postgres
     volumes:
-      # DBのデータはボリュームを作成して保存
-      # ディレクトリとマウントとって実データをホストOSに直接残しても良い
-      # /var/lib/postgresql/dataにDBのデータが格納されている
       - postgres_data:/var/lib/postgresql/data
-    env_file: ./postgres/.env
+    env_file: ./postgres/postgres.env
     ports:
-      # ホスト側のポートはローカルのpsqlとバッティングするので5432以外にする
-      - 5433:5432
-  nginx:
-    build: ./nginx
+      - 5432:5432
+  pgadmin:
+    image: dpage/pgadmin4
     ports:
-      - 80:80
+      - 5050:80
     depends_on:
-      - django
+      - postgres
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@example.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    tty: true
     volumes:
-      - ./django/static:/code/static
-      - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
+      - pgadmin4_data:/var/lib/pgadmin
+
 volumes:
   postgres_data:
+  pgadmin4_data:
