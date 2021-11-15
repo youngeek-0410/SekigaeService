@@ -1,11 +1,9 @@
 from logging.config import fileConfig
 
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
-
 from alembic import context
-import os
 from app.models import Base
+from db.database import DATABASE_URL
+from sqlalchemy import engine_from_config, pool
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -25,15 +23,6 @@ target_metadata = Base.metadata
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-DB_USER: str = os.getenv("DB_USER", "")
-DB_NAME: str = os.getenv("DB_USER", "")
-DB_PASSWORD: str = os.getenv("DB_PASSWORD", "")
-DB_HOST: str = os.getenv("DB_HOST", "")
-DB_PORT: str = os.getenv("DB_PORT", "")
-DB_NAME: str = os.getenv("DB_NAME", "")
-DATABASE_URL = (
-    f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-)
 config.set_main_option("sqlalchemy.url", DATABASE_URL)
 
 

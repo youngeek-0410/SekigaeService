@@ -1,11 +1,9 @@
 import uuid
 
+from db.database import Base
 from sqlalchemy import Column
 from sqlalchemy.dialects.postgresql import TIMESTAMP, VARCHAR
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.sql.functions import current_timestamp
-
-Base = declarative_base()
 
 
 class BaseModelMixin(Base):
