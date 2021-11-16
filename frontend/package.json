@@ -12,7 +12,7 @@
     "format": "prettier --write . && npm run lint:js -- --fix && npm run lint:css -- --fix"
   },
   "dependencies": {
-    "next": "12.0.3",
+    "next": "12.0.4",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
