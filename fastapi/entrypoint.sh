@@ -13,6 +13,8 @@ fi
 
 cd /src/db
 poetry run alembic upgrade head
+poetry run python seed.py
+
 cd /src
 poetry run uvicorn app.main:app --host 0.0.0.0 --reload
 

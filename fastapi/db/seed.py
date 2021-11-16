@@ -1,12 +1,14 @@
 from app.models import User
-from database import SessionLocal
+from database import local_session
 
-db = SessionLocal()
+db = local_session()
 
 
 def seed_user():
-    user = User(username="test1", email="test1@example.com", uid="xxxxxxxxxxxxxxxxxx")
-    db.add(user)
+    user1 = User(username="test1", email="test1@example.com", uid="xxxxxxxxxxxxxxxxxx")
+    user2 = User(username="test2", email="test2@example.com", uid="yyyyyyyyyyyyyyyyyy")
+    db.add(user1)
+    db.add(user2)
     db.commit()
 
 
