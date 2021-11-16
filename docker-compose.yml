@@ -24,7 +24,7 @@ services:
       - postgres
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@example.com
-      - PGADMIN_DEFAULT_PASSWORD=admin
+      - PGADMIN_DEFAULT_PASSWORD=nxpibiIDGuqvjwTh
     tty: true
     volumes:
       - pgadmin4_data:/var/lib/pgadmin
