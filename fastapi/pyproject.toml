@@ -12,6 +12,7 @@ SQLAlchemy = "^1.4.27"
 aiomysql = "^0.0.21"
 psycopg2-binary = "^2.9.2"
 alembic = {extras = ["tz"], version = "^1.7.5"}
+SQLAlchemy-Utils = "^0.37.9"
 
 [tool.poetry.dev-dependencies]
 

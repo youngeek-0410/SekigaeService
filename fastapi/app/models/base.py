@@ -2,18 +2,14 @@ import uuid
 
 from db.database import Base
 from sqlalchemy import Column
-from sqlalchemy.dialects.postgresql import TIMESTAMP, VARCHAR
+from sqlalchemy.dialects.postgresql import TIMESTAMP, UUID
 from sqlalchemy.sql.functions import current_timestamp
 
 
 class BaseModelMixin(Base):
     __abstract__ = True
 
-    uuid = Column(
-        VARCHAR(36),
-        primary_key=True,
-        server_default=uuid.uuid4().hex,
-    )
+    uuid = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
 
     created_at = Column(
         "created_at",
