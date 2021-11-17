@@ -5,7 +5,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 
 WORKDIR /src
 
-RUN apt-get update && apt-get install -y --no-install-recommends netcat less
+RUN apt-get update && apt-get install -y --no-install-recommends netcat less gosu
 
 # pipを使ってpoetryをインストール
 RUN pip install poetry
