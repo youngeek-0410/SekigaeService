@@ -1,2 +1,2 @@
-from .base import Base, BaseModelMixin
+from .base import BaseModelMixin
 from .user import User

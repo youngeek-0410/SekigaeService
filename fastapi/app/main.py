@@ -1,9 +1,12 @@
-from app.routers.user import router as user_router
-
 from fastapi import APIRouter, FastAPI
 
-router = APIRouter()
-router.include_router(user_router, prefix="/users", tags=["users"])
+from .middlwares import DBSessionMiddleware, HttpRequestMiddleware
+from .routers.v1 import api_v1_router
 
 app = FastAPI()
+app.add_middleware(DBSessionMiddleware)
+app.add_middleware(HttpRequestMiddleware)
+
+router = APIRouter()
+router.include_router(api_v1_router, prefix="/api/v1", tags=["api/v1"])
 app.include_router(router)

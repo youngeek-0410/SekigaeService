@@ -1,9 +1,10 @@
 import uuid
 
-from db.database import Base
 from sqlalchemy import Column
 from sqlalchemy.dialects.postgresql import TIMESTAMP, UUID
 from sqlalchemy.sql.functions import current_timestamp
+
+from ..db.database import Base
 
 
 class BaseModelMixin(Base):

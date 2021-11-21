@@ -24,6 +24,7 @@ Base = declarative_base()
 Base.query = local_session.query_property()
 
 
-def get_db():
-    with local_session() as session:
-        yield session
+def get_db_session() -> scoped_session:
+    # with local_session() as session:
+    #     yield session
+    return local_session
