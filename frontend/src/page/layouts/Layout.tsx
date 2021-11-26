@@ -1,4 +1,6 @@
-import { ReactNode } from 'react'
+import { ReactNode } from "react"
+
+import Header from "common/components/Header"
 
 type Props = {
   children: ReactNode;
@@ -7,7 +9,7 @@ type Props = {
 export function Layout({ children }: Props) {
   return (
     <>
-      <p>this is header</p>
+      <Header />
       {children}
     </>
   )
