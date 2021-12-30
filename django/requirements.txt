@@ -24,7 +24,7 @@ msgpack==1.0.2
 packaging==21.2
 proto-plus==1.19.8
 protobuf==3.19.1
-psycopg2-binary==2.9.1
+psycopg2-binary==2.9.3
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.21
